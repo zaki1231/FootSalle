@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<section>
+		<div class="container">
+			<div class="reservation-card">
+				<div class="card card-image" style="background-image: url(images/image2.jpg);">
+					<div class="reservation-card text-white text-center py-5 px-4">
+					
+							<h5 class="orange-text">
+								Z FOOT</h5>
+							<h3 class="card-title pt-2 ">
+								<strong>Réservé votre terrain en un seul clic !</strong>
+							</h3>
+							<p class="card-title-p">Venez découvrir nos 5 terrains de foot recouverts d'un gazon synthétique de toute dernière génération. ouvert 7j/7 et toute l'année de 10h à minuit. Que vous soyez sportif ou non, débutant ou expert, découvrez une équipe professionnelle attentive à vos attentes et à vos besoins.</p>
+							<a id="btnPopup" class="btn btn-orange waves-effect waves-light btn modal-trigger" href="#">Réserver</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="overlay" class="card text-center">
+				<div class="card-top jumbotron text-center hoverable p-4">
+					<div class="jumbotron text-center hoverable p-4">
+
+						<form class="text-center border border-light p-5" action="#!">
+							<h5 class="h4 mb-4">Réservation</h5>
+							<p>Veuillez suivre les étapes pour réserver votre terrain</p>
+							<input id="nom" type="text" id="defaultSubscriptionFormName" class="form-control mb-4" placeholder="votre Nom">
+							<input id="prenom" type="text" id="defaultSubscriptionFormName" class="form-control mb-4" placeholder="Votre Prénom">
+							<button id="btnPopup2" class="col-md-3 btn-suiv-prec btn btn-info" type="submit">Suivant</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="overlay2">
+				<div class="card-top jumbotron text-center hoverable p-4">
+					<div class="jumbotron text-center hoverable p-4">
+
+						<form class="text-center border border-light p-5" action="#!">
+							<h5 class="h4 mb-4">Réservation</h5>
+							<p>Veuillez suivre les étapes pour réserver votre terrain</p>
+							<input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+							<input type="text" id="defaultRegisterPhone" class="form-control mb-4" placeholder="N° Tel">
+							<div class="row btn-suiv-prec">
+	
+                                <button id="btnPopup3" class="col-md-3 btn-suiv-prec btn btn-info" type="submit">Précedent</button>
+                                <button id="btnPopup3" class="col-md-3 btn-suiv-prec btn btn-info" type="submit">Suivant</button>
+							</div>
+						</form>
+					</div>
+                </div>
+                
+			</div>
+			<div class="card-top jumbotron text-center hoverable p-4">
+				<div class="jumbotron text-center hoverable p-4">
+
+					<div class="row">
+						<div class="col-md-4 offset-md-1 mx-3 my-3">
+							<div class="view overlay">
+								<img src="images/image-foot-5.jpg" class="img-fluid" alt="Sample image for first version of blog listing">
+								<a>
+									<div class="mask rgba-white-slight"></div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-7 text-md-left ml-3 mt-3">
+							<a href="#!" class="orange-text">
+								<h5 class="h6 pb-1">
+									Z FOOT</h5>
+							</a>
+							<h4 class="h4 mb-4 text-center">Le Foot à 5</h4>
+							<p class="font-weight-normal text-center">
+								«J’ai commencé le football en y jouant dans la rue, sans artifices. Juste de la convivialité, de bonnes sensations et l’envie de partager une passion avec d’autres jeunes de mon quartier. C’est pourquoi il est important pour moi que les projecteurs se tournent vers le Foot 5, où on apprend le jeu, la technique, des valeurs, où l’on prend du plaisir, et qu’on s’intéresse aux bénéfices que ce sport apporte au quotidien» Zinédine Zidane.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+{% block javascripts %}
+	<script>
+        var btnPopup = document.getElementById('btnPopup');
+        var overlay = document.getElementById('overlay');
+        btnPopup.addEventListener('click', openModal);
+
+        function openModal() {
+        overlay.style.display = 'block';
+        }
+
+        var btnPopup2 = document.getElementById('btnPopup2');
+        var overlay2 = document.getElementById('overlay2');
+        btnPopup2.addEventListener('click', ouvrir);
+
+        function ouvrir() {
+            if (document.getElementById('nom').value != "" && document.getElementById('prenom').value != ""){
+
+            overlay2.style.display = 'block';
+            overlay.style.display = 'none';
+            }else {
+                
+                alert("Saisir votre nom et prénom");
+            
+            }
+            
+        }
+	</script>
+
+{% endblock javascripts %}

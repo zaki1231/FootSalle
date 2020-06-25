@@ -1,0 +1,51 @@
+
+.card-title-p{
+    margin-top: 3em;
+}
+body{
+    font-family: Helvetica;
+    background-color: whitesmoke;
+}
+.navbar{
+    background-color: #f8f9fa;
+}
+.container-contact{
+    background-color: #dee2e647;
+    height: 450px;
+    width: 900px;
+}
+.reservation-card{
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.21);
+}
+
+.blue {
+    background-color: #212529 !important;
+}
+.btn-suiv-prec{
+    justify-content: center;
+}
+.btn-info {
+    color: #fff;
+    background-color: #212529 !important;
+}
+
+.card-top{
+    margin-top: 20px; 
+}
+#overlay{
+
+    background-color:white;
+    display: none;
+    width: 100%; 
+    height: 100%;
+   
+}
+#overlay2{
+
+    background-color:white;
+    display: none;
+    width: 100%; 
+    height: 100%;
+   
+}
