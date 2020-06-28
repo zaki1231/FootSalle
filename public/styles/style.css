@@ -33,19 +33,13 @@ body{
 .card-top{
     margin-top: 20px; 
 }
-#overlay{
-
-    background-color:white;
-    display: none;
-    width: 100%; 
-    height: 100%;
-   
+.card-color{
+    background-color: #e0e0e0 !important;
 }
-#overlay2{
 
-    background-color:white;
-    display: none;
-    width: 100%; 
-    height: 100%;
-   
-}
+
+
+
+
+
+
