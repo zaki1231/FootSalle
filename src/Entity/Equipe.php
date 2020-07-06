@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EquipeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Equipe
      * @ORM\Column(type="integer", nullable=true)
      */
     private $matchPerdu;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Joueur::class, mappedBy="idEquipe")
+     */
+    private $joueurs;
+
+    public function __construct()
+    {
+        $this->joueurs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,37 @@ class Equipe
     public function setMatchPerdu(?int $matchPerdu): self
     {
         $this->matchPerdu = $matchPerdu;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Joueur[]
+     */
+    public function getJoueurs(): Collection
+    {
+        return $this->joueurs;
+    }
+
+    public function addJoueur(Joueur $joueur): self
+    {
+        if (!$this->joueurs->contains($joueur)) {
+            $this->joueurs[] = $joueur;
+            $joueur->setIdEquipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJoueur(Joueur $joueur): self
+    {
+        if ($this->joueurs->contains($joueur)) {
+            $this->joueurs->removeElement($joueur);
+            // set the owning side to null (unless already changed)
+            if ($joueur->getIdEquipe() === $this) {
+                $joueur->setIdEquipe(null);
+            }
+        }
 
         return $this;
     }

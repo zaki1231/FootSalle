@@ -23,14 +23,10 @@ class Tournoi
     private $nom;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="datetime")
      */
-    private $datTournoi;
+    private $dateTournoi;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getNom(): ?string
     {
@@ -44,15 +40,17 @@ class Tournoi
         return $this;
     }
 
-    public function getDatTournoi(): ?int
+    public function getDateTournoi(): ?\DateTimeInterface
     {
-        return $this->datTournoi;
+        return $this->dateTournoi;
     }
 
-    public function setDatTournoi(int $datTournoi): self
+    public function setDateTournoi(\DateTimeInterface $dateTournoi): self
     {
-        $this->datTournoi = $datTournoi;
+        $this->dateTournoi = $dateTournoi;
 
         return $this;
     }
+
+   
 }
