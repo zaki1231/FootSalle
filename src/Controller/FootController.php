@@ -32,7 +32,7 @@ class FootController extends AbstractController
             'controller_name' => 'FootController',
         ]);
     }
-
+     
     /**
      * @Route("/", name="home")
      */
@@ -125,7 +125,7 @@ class FootController extends AbstractController
                 ]
             ]);
 
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i = 1; $i <= 2; $i++) {
             $formBuilder->add('joueur'.$i.'nom', TextType::class, [
                 'attr' => [
                     'placeholder' => 'nom'
@@ -157,7 +157,7 @@ class FootController extends AbstractController
            $equipe->setMatchNul(0);
            $equipe->setMatchPerdu(0);
 
-           for($i = 1; $i <= 3; $i++) {
+           for($i = 1; $i <= 2; $i++) {
             $joueur = new Joueur();
             $joueur->setIdEquipe($equipe);
             $joueur->setNom($data['joueur'.$i.'nom']);
@@ -179,64 +179,5 @@ class FootController extends AbstractController
             'equipe' => $equipe
         ]);
     }
-
-
-    /**
-     * @Route("/joueur", name="joueur")
-     */
-
-    public function joueur(Request $request, EntityManagerInterface $em): Response
-    {
-
-        $form = $this->createFormBuilder()
-        
-        ->add('nomEquipe', TextType::class, [
-            'attr' => [
-                'placeholder' => 'nom equipe'
-            ]
-        ])
-            ->add('nom', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'nom'
-                ]
-            ])
-            ->add('prenom', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'prenom'
-                ]
-            ])
-            ->add('dateNaissance', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'date de naissance'
-                ]
-            ])
-            
-            ->getForm();
-
-        $joueur = new Joueur;
-        $form->handleRequest($request);
-        $joueurExist= false;
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-           $joueur->setNom($data['nom']);
-           $joueur->setPrenom($data['prenom']);
-           $joueur->setDateNaissance($data['dateNaissance']);
-           
-         
-            $em->persist($joueur);
-            $em->flush();
-            $joueurExist= true;
-            dump($joueur);
-        }
-
-
-        return $this->render('foot/joueur.html.twig', [
-            'formJoueur' => $form->createView(),
-            'joueurExist' => $joueurExist,
-            'joueur' => $joueur
-        ]);
-    }
-
     
 }

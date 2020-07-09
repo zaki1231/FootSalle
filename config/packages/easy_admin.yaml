@@ -1,0 +1,5 @@
+#easy_admin:
+#    entities:
+#        - App\Entity\Tournoi
+#       - App\Entity\Category
+#       - App\Entity\User

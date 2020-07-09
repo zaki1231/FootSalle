@@ -75,8 +75,9 @@ class LoginFormAuthenticator extends  AbstractAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        $request->getSession()->getFlashBag()->add('erreur', 'identifiant invalide!');
-          return new  RedirectResponse($this->urlGenerator->generate('reservation'));
+        
+        $request->getSession()->getFlashBag()->add('erreur', 'identifiant valide!');
+          return new  RedirectResponse($this->urlGenerator->generate('app_login'));
     }
 
     /**

@@ -36,6 +36,9 @@ body{
 .card-color{
     background-color: #e0e0e0 !important;
 }
+.erreur{
+background-color: red;
+}
 
 
 
