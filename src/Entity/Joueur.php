@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\JoueurRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=JoueurRepository::class)
@@ -44,6 +45,9 @@ class Joueur
     {
         return $this->id;
     }
+    /**
+    * @Assert\NotBlank(message="Maxime")
+    */
 
     public function getNom(): ?string
     {

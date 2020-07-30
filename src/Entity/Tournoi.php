@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\TournoiRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=TournoiRepository::class)
- * @Vich\Uploadable
  */
 class Tournoi
 {
@@ -26,34 +25,30 @@ class Tournoi
     private $nom;
 
     /**
-     * @ORM\Column(type="datetime", name="date_tournoi")
-     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $dateTournoi;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
-    private $featuredImage;
+    private $LimitEquipe;
 
     /**
-     * @ORM\Column(type="datetime", name="updated_at")
-     * @var \DateTime
+     * @ORM\ManyToMany(targetEntity=Equipe::class, mappedBy="tournoi")
      */
-    private $updatedAt;
-    
+    private $equipes;
 
-    /**
-     * @Vich\UploadableField(mapping="featured_images", fileNameProperty="featuredImage")
-     * @var File
-     */
-    private $imageFile;
-   
+    public function __construct()
+    {
+        $this->equipes = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
-    
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -66,62 +61,55 @@ class Tournoi
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDateTournoi()
+    public function getDateTournoi(): ?\DateTimeInterface
     {
         return $this->dateTournoi;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function setDateTournoi(\DateTime $dateTournoi)
+    public function setDateTournoi(\DateTimeInterface $dateTournoi): self
     {
         $this->dateTournoi = $dateTournoi;
+
+        return $this;
     }
 
-    public function getFeaturedImage()
+    public function getLimitEquipe(): ?int
     {
-        return $this->featuredImage;
+        return $this->LimitEquipe;
     }
 
-    public function setFeaturedImage(string $featuredImage)
+    public function setLimitEquipe(int $LimitEquipe): self
     {
-        $this->featuredImage = $featuredImage;
+        $this->LimitEquipe = $LimitEquipe;
 
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return Collection|Equipe[]
      */
-    public function getUpdatedAt()
+    public function getEquipes(): Collection
     {
-        return $this->updatedAt;
+        return $this->equipes;
     }
 
-    /**
-     * @return \DateTime
-     */
-
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function addEquipe(Equipe $equipe): self
     {
-        $this->updatedAt = $updatedAt;
+        if (!$this->equipes->contains($equipe)) {
+            $this->equipes[] = $equipe;
+            $equipe->addTournoi($this);
+        }
+
+        return $this;
     }
 
-    public function setImageFile(File $image = null)
+    public function removeEquipe(Equipe $equipe): self
     {
-        $this->imageFile = $image;
-    }
+        if ($this->equipes->contains($equipe)) {
+            $this->equipes->removeElement($equipe);
+            $equipe->removeTournoi($this);
+        }
 
-    /**
-     * @return File
-     */
-    public function getImageFile()
-    {
-        return $this->imageFile;
+        return $this;
     }
-
 }

@@ -1,33 +1,44 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-	{% for tournoi in tournois%}
+	{% for tournoi in tournois %}
+		<section>
 
-
-		<section class="dark-grey-text">
-		
 			<div class="row pr-lg-5">
 				<div class="col-md-7 mb-4">
 
 					<div class="view">
-						<img src="images/image1.jpg" class="img-fluid" alt="smaple image">
+					
 					</div>
 
 				</div>
 				<div class="col-md-5 d-flex align-items-center">
-					<div>
 
+					<div>
 						<h3 class="font-weight-bold mb-4">Prochain tournoi
-							{{ tournoi.nom }}
-							le
-							{{ tournoi.dateTournoi |date('Y/m/d') }}</h3>
+						" 	{{ tournoi.nom }} "
+							aura lieu le
+						
+						
+							{{ tournoi.dateTournoi |date('d-m-Y ') }}
+								à 
+							{{ tournoi.dateTournoi |date('i:s') }}
+						</h3>
 						<p>Z FOOT organise comme chaque année un Tournoi de début de saison dans toutes les gatégories du U15 au séniors sur nos terrains. Ce Tournoi se déroulera le 25 Aout 2020 sur toute la journée avec 16 équipes. Rendez-vous pour toutes les équipes à 8h30 et début des matchs à 9h00. Nous serions très heureux de vous accueillir à l’occasion de cette journée. Droit d’inscription 30 euros par équipe (10 joueurs maxi). Veuillez remplir le formulaire d'inscription si vous souhaiter participer avant le 20 Août, afin que l’on puisse s’organiser pour le bon déroulement de ce tournoi. Le règlement de l'inscription confirmera celle-ci. Restant à votre disposition pour tous renseignements, recevez, madame ou monsieur nos salutations sportives.</p>
-						<a class="nav-link" href="{{ path('equipe') }}">participer</a>
+						<a class="nav-link" href="{{ path('equipe', {id: tournoi.id}) }}">participer</a>
 					</div>
 				</div>
 			</div>
 
 		</section>
 	{% endfor %}
+	{% for type, messages in app.flashes %}
+	{% for message in messages %}
+	<div class="card-panel card-panel-p panel-inncorect-identifiant">
+		<span class="white-text text-darken-2" class="{{ type }}" role="alert">{{ message }}</span>	
+	</div>
 
+	{% endfor %}
+{% endfor %}
 
 {% endblock %}
+

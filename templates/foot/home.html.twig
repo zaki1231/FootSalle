@@ -1,4 +1,45 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1 >bienvenu</h1>
-     {% endblock %}
+
+	<h1 class="text-center">Resultat du dernier tournoi</h1>
+	
+	<!-- Jumbotron -->
+		<div class="jumbotron text-center">
+
+			<!-- Title -->
+			<h4 class="card-title h4 pb-2"><strong>Z FOOT</strong></h4>
+		
+			<!-- Card image -->
+			<div class="view overlay my-4">
+				<img src="images/image-reservation.jpg" class="img-fluid " alt="smaple image">
+			<a href="#">
+				<div class="mask rgba-white-slight"></div>
+			</a>
+			</div>
+		
+			<h5 class="indigo-text h5 mb-4">Le Football en salle</h5>
+		
+			<p class="card-text">Le futsal ou football en salle est un sport dérivé du football dans lequel deux équipes de 4 joueurs et un gardien de but s’affrontent sur un terrain intérieur, le plus fréquemment aux dimensions d’un terrain de handball. C’est un sport qui est né en Espagne dans les années 1930. La première coupe du monde de futsal a eu lieu en 1989 et, depuis 1992 a lieu tous les 4 ans. Le Brésil (5 fois champion du monde) et l’Espagne (2 fois championne du monde) sont les 2 seuls pays mondialement titrés..</p>
+		
+		</div>
+  <!-- Jumbotron -->
+
+	{% for equipe in equipes %}
+		<div class="row">
+			<div class="col s12 m5">
+				<div class="card-panel teal">
+					<span class="white-text">
+						<h3 class="font-weight-bold mb-4">Résultat de l'équipe:
+							{{ equipe.nom}}</h3>
+						<p>match gagné :{{ equipe.matchGagne}}</p>
+						<p>match nul :{{ equipe.matchNul  }}</p>
+						<p>match perdu :{{ equipe.matchPerdu }}</p>
+
+					</span>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+
+
+{% endblock %}

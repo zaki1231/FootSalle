@@ -5,7 +5,8 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "easycorp/easyadmin-bundle": "^3.0",
+        "doctrine/annotations": "^1.10",
+        "easycorp/easyadmin-bundle": "^3.1",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "5.1.*",
         "symfony/console": "5.1.*",
@@ -27,7 +28,7 @@
         "symfony/string": "5.1.*",
         "symfony/translation": "5.1.*",
         "symfony/twig-pack": "*",
-        "symfony/validator": "5.1.*",
+        "symfony/validator": "^5.1",
         "symfony/web-link": "5.1.*",
         "symfony/yaml": "5.1.*",
         "vich/uploader-bundle": "^1.14"

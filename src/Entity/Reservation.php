@@ -2,16 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\ReservationRepository;
-use DateTime;
+
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ReservationRepository::class)
  */
 class Reservation
 {
+    
     /**
+     * @var int 
+     * 
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -24,12 +27,23 @@ class Reservation
     private $nom;
 
     /**
+     * @var string
+     * 
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 80,
+     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom dépasse {{ limit }}"
+     * )
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string
+     * 
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[0-9]{10}$/")
      */
     private $numeroTel;
 
@@ -77,7 +91,7 @@ class Reservation
         return $this->numeroTel;
     }
 
-    public function setNumeroTel(int $numeroTel): self
+    public function setNumeroTel(string $numeroTel): self
     {
         $this->numeroTel = $numeroTel;
 

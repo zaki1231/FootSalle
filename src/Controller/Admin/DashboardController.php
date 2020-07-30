@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Controller\Admin;
-
-use App\Entity\User;
+use App\Entity\Equipe;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -13,13 +12,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\CrudUrlGenerator;
 class DashboardController extends AbstractDashboardController
 {
     /**
-     * @Route("/Users")
+     * @Route("/admin", name="admin")
      */
     public function index(): Response
     {
-        $usersListUrl = $this->get(CrudUrlGenerator::class)->build()->setController(UserCrudController::class)->generateUrl();
+        $usersListUrl = $this->get(CrudUrlGenerator::class)->build()->setController(TournoiCrudController::class)->generateUrl();
+        
         return $this->redirect($usersListUrl);
-
     }
 
     public function configureDashboard(): Dashboard
@@ -30,13 +29,8 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-
-        return [
-            MenuItem::linkToDashboard('Dashboard', 'fa-home'),
-
-            MenuItem::section('User'),
-            MenuItem::linkToCrud('User', 'fa fa-tags', User::class),
-        ];
-
+        yield MenuItem::linktoDashboard('Tournoi', 'fa fa-home');
+       
+        yield MenuItem::linkToCrud('Equipe', 'fa fa-home', Equipe::class);
     }
 }

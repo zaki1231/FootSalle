@@ -3,17 +3,32 @@
 {% form_theme formReservation 'bootstrap_4_layout.html.twig'  %}
 {% block body %}
 
-	<div class="container">
 
-		<h3 class="card-title pt-2 ">
-			<strong>Réservé votre terrain en UN clic !</strong>
-		</h3>
-		<p class="card-title-p">Venez découvrir nos 5 terrains de foot recouverts d'un gazon synthétique de toute dernière génération. ouvert 7j/7 et toute l'année de 10h à minuit. Que vous soyez sportif ou non, débutant ou expert, découvrez une équipe professionnelle attentive à vos attentes et à vos besoins.</p>
+	<h1 class="text-center ">Réservez votre terrain en un seul clic !</h1>
 
-	</div>
+
 	<div class="row">
-		<div class="col s12 m6">
-			<div class="card card-color ">
+
+		<div class="col-md-6 col-sm-12">
+			<div class="col-md-12 card card-color ">
+				<div class="card-content ">
+					<h4 class="text-center">Bienvenue dans votre centre Z FOOT
+					</h4>
+					<p>La meilleure expérience de foot salle est désormais à portée de main. Location de terrain,tournoi, événement... Quel que soit votre profil, notre équipe vous accueille toute l'année dans des infrastructures haut-de-gamme pour vivre des émotions fortes sur et dehors des terrains !</p>
+					<p>Veuillez remplir le formulaire pour éffectuer une réservation.<br>
+						Veuillez vous présenter au centre Z FOOT 10minutes avant l'heure de votre réservation
+					</p>
+					<ul class="reservation-ul-margin">
+						<li>- Tournoi encadré et arbitré</li>
+						<li>- Cocktail premium d'après tournoi</li>
+						<li>- Welcome pack avec maillots personnalisés</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-6">
+			<div class="col-md-12 card card-color ">
 				<div class="card-content ">
 					{{ form_start(formReservation) }}
 
@@ -21,17 +36,17 @@
 					{{form_widget(formReservation) }}
 
 
-					<button type="submit" class="btn btn-mdb-color">Réserver</button>
+					<button id="btn-resv" type="submit" class="btn btn-mdb-color">Réserver</button>
 					{{ form_end(formReservation) }}
 
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 
 	{% if reservationPrise %}
-		<div class="row">
+		<div id="z" class="row">
 			<div class="col s12 m6">
 				<div class="card card-color ">
 					<div class="card-content ">
@@ -53,6 +68,4 @@
 
 	{% endif %}
 
-
 {% endblock %}
-{% block javascripts %}{% endblock javascripts %}

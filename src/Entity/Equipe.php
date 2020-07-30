@@ -6,6 +6,7 @@ use App\Repository\EquipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EquipeRepository::class)
@@ -21,6 +22,7 @@ class Equipe
 
     /**
      * @ORM\Column(type="string", length=255)
+     * Assert\Lenght(min=6)
      */
     private $nom;
 
@@ -44,9 +46,15 @@ class Equipe
      */
     private $joueurs;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Tournoi::class, inversedBy="equipes")
+     */
+    private $tournoi;
+
     public function __construct()
     {
         $this->joueurs = new ArrayCollection();
+        $this->tournoi = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,6 +136,32 @@ class Equipe
             if ($joueur->getIdEquipe() === $this) {
                 $joueur->setIdEquipe(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tournoi[]
+     */
+    public function getTournoi(): Collection
+    {
+        return $this->tournoi;
+    }
+
+    public function addTournoi(tournoi $tournoi): self
+    {
+        if (!$this->tournoi->contains($tournoi)) {
+            $this->tournoi[] = $tournoi;
+        }
+
+        return $this;
+    }
+
+    public function removeTournoi(tournoi $tournoi): self
+    {
+        if ($this->tournoi->contains($tournoi)) {
+            $this->tournoi->removeElement($tournoi);
         }
 
         return $this;

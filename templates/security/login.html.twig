@@ -1,14 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	{% for type, messages in app.flashes %}
-		{% for message in messages %}
-			<div class="{{ type }}" role="alert">
-				{{ message }}
-			</div>
-
-		{% endfor %}
-	{% endfor %}
+	
 
 	<div class="row">
 		<form class="col s12" method="POST">
@@ -27,11 +20,21 @@
 				</div>
 			</div>
 			<input type="hidden" name="csrf_token" value="{{csrf_token('login_form') }}">
-
+			{% for type, messages in app.flashes %}
+				{% for message in messages %}
+				<div class="card-panel card-panel-p panel-inncorect-identifiant">
+					<span class="white-text text-darken-2" class="{{ type }}" role="alert">{{ message }}</span>	
+				</div>
+	
+				{% endfor %}
+			{% endfor %}
 			<button type="submit" value=" sign in" class="btn btn-mdb-color">Se connecter</button>
 
 		</form>
+		
+					
 	</div>
+	
 
 
 {% endblock %}

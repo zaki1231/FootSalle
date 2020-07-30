@@ -1,13 +1,21 @@
-
 .card-title-p{
     margin-top: 3em;
 }
 body{
-    font-family: Helvetica;
-    background-color: whitesmoke;
+    font-family: Helvetica !important;
+    background-color: #2bbbad30 !important;
 }
-.navbar{
-    background-color: #f8f9fa;
+
+.nav-link{
+    font-size: large;
+}
+
+.navbar {
+    background-color: #2bbbada1;
+    line-height: 25px;
+}
+nav ul a:hover {
+    background-color:#26a69a6e;
 }
 .container-contact{
     background-color: #dee2e647;
@@ -20,14 +28,14 @@ body{
 }
 
 .blue {
-    background-color: #212529 !important;
+    background-color: black !important;
 }
 .btn-suiv-prec{
     justify-content: center;
 }
 .btn-info {
     color: #fff;
-    background-color: #212529 !important;
+    background-color: black !important;
 }
 
 .card-top{
@@ -36,9 +44,60 @@ body{
 .card-color{
     background-color: #e0e0e0 !important;
 }
-.erreur{
-background-color: red;
+
+.panel-inncorect-identifiant{
+    background-color: red;
+    width: 20%;
 }
+.card-panel-p{
+    font-size: larger;
+}
+
+.card-color {
+    background-color: #f8f9faeb !important;
+}
+label {
+    font-size: 1.1em;
+    color: #212529;
+}
+h1 {
+    margin-bottom: 1.1em !important;
+}
+
+p {
+    font-size: 1.1em;
+    color: black !important;
+   
+}
+h4{
+    color: #e86305;
+    margin-bottom: 1em !important;
+}
+.card-title{
+    margin: 50px;
+}
+li{
+    font-size: 1.2em;
+    color: #e86305;
+}
+
+.reservation-ul-margin{
+    margin-top: 1em;
+}.jumbotron {
+    background-color: #f8f9faeb !important;
+}
+@media (max-width: 992px){
+    .navbar-collapse{
+        background-color:#2bbbad;
+        z-index: 1;
+    }
+    h1 {
+        font-size: 2em !important;
+    }
+}
+
+
+
 
 
 
