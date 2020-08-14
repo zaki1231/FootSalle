@@ -5,12 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Tournoi;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
-use EasyCorp\Bundle\EasyAdminBundle\Exception\ForbiddenActionException;
-
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 class TournoiCrudController extends AbstractCrudController
 {
@@ -24,9 +22,12 @@ class TournoiCrudController extends AbstractCrudController
     {
         
         return [
+           
             TextField::new('nom'), 
             DateTimeField::new('dateTournoi'),
-           
+            ImageField::new('imageFile')->setFormType(VichImageType::class)->setLabel('Image'),
+            TextareaField::new('contenu')
+     
         ];
     }
 }

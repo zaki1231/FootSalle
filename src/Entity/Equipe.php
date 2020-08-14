@@ -6,6 +6,7 @@ use App\Repository\EquipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -22,27 +23,36 @@ class Equipe
 
     /**
      * @ORM\Column(type="string", length=255)
-     * Assert\Lenght(min=6)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 50,
+     *      minMessage = "Le nom de l'equipe doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom de l'equipe dépasse {{ limit }}"
+     * )
+     * @Groups({"group1"})
      */
     private $nom;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"group1"})
      */
     private $matchGagne;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"group1"})
      */
     private $matchNul;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"group1"})
      */
     private $matchPerdu;
 
     /**
-     * @ORM\OneToMany(targetEntity=Joueur::class, mappedBy="idEquipe")
+     * @ORM\OneToMany(targetEntity=Joueur::class, mappedBy="idEquipe", cascade={"persist"})
      */
     private $joueurs;
 

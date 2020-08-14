@@ -6,9 +6,13 @@ use App\Repository\TournoiRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * @ORM\Entity(repositoryClass=TournoiRepository::class)
+ * @Vich\Uploadable
  */
 class Tournoi
 {
@@ -39,9 +43,43 @@ class Tournoi
      */
     private $equipes;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string| null
+     */
+    private $featuredImage;
+
+    /**
+     * @Vich\UploadableField(mapping="featured_images", fileNameProperty="featured_image")
+     * @var File | null
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $contenu;
+
+
     public function __construct()
     {
         $this->equipes = new ArrayCollection();
+    }
+
+    /**
+     * @param File/null $imageFile
+     */
+    public function setImageFile(?File $imageFile= null)
+    {
+         $this->imageFile = $imageFile;
+    }
+
+    /**
+     * @return File/null 
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 
     public function getId(): ?int
@@ -109,6 +147,36 @@ class Tournoi
             $this->equipes->removeElement($equipe);
             $equipe->removeTournoi($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return string/null 
+     */
+    public function getFeaturedImage(): ?string
+    {
+        return $this->featuredImage;
+    }
+
+    /**
+     * @param string/null $featuredImage
+     */
+    public function setFeaturedImage(?string $featuredImage): self
+    {
+        $this->featuredImage = $featuredImage;
+
+        return $this;
+    }
+
+    public function getContenu(): ?string
+    {
+        return $this->contenu;
+    }
+
+    public function setContenu(string $contenu): self
+    {
+        $this->contenu = $contenu;
 
         return $this;
     }

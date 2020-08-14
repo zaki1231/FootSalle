@@ -3,21 +3,110 @@
 {% block body %}
 <h1 class="text-center">Formulaire d'inscription au Tournoi</h1>
 
-<div class="row">
-    <div class="col s12 m6">
+<div class="row ">
+    <div class="col-md-8">
         <div class="card card-color ">
             <div class="card-content ">
                 {{ form_start(formEquipe) }}
-
-                {{form_widget(formEquipe) }}
-
+                {{ form_row(formEquipe.nom) }}
+                <ul class="joueurs" data-prototype="{{ form_widget(formEquipe.joueurs.vars.prototype)|e('html_attr') }}">
+                        {% for joueur in formEquipe.joueurs %}
+                            <li class="joueur">
+                                <ul>
+                                    <li>{{ form_row(joueur.nom) }}</li>
+                                    <li>{{ form_row(joueur.prenom) }}</li>
+                                    <li>{{ form_row(joueur.dateNaissance) }}</li>
+                                </ul>
+                            </li>
+                        {% endfor %}
+                </ul>
                 <button type="submit" class="btn btn-mdb-color">Valider</button>
                 {{ form_end(formEquipe) }}
 
             </div>
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="card card-color ">
+            <div class="card-content ">
+                <ul class="reservation-ul-margin">
+                    <li>- Tournoi encadré et arbitré</li>
+                    <li>- Cocktail premium d'après tournoi</li>
+                    <li>- Welcome pack avec maillots personnalisés</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
-{% endblock %}
 
+{% endblock %}
+{% block javascripts %}
+<script>
+    var $collectionHolder;
+
+    // rajouter button lien "add a joueur" link
+    var $addJoueurButton = $('<a class="addJoueur">Ajouter un joueur</a>');
+    var $newLinkLi = $('<li></li>').append($addJoueurButton);
+
+    jQuery(document).ready(function() {
+        // Get the ul that holds the collection of tags
+        $collectionHolder = $('ul.joueurs');
+
+        $collectionHolder.find('li.joueur').each(function() {
+            addJoueurFormDeleteLink($(this));
+        });
+
+        // add the "add a tag" anchor and li to the tags ul
+        $collectionHolder.append($newLinkLi);
+
+        $collectionHolder.data('index', $collectionHolder.find('input').length);
+
+        $addJoueurButton.on('click', function(e) {
+            // add a new tag form (see next code block)
+            addJoueurForm($collectionHolder, $newLinkLi);
+        });
+    });
+
+    function addJoueurForm($collectionHolder, $newLinkLi) {
+
+    var limiteJoueurs = 4;
+    var nbJoueurs = $('li.joueur').length;
+    console.log(nbJoueurs);
+
+    if(nbJoueurs < limiteJoueurs) {
+        $('.addJoueur').unbind('click', false);
+        // Get the data-prototype explained earlier
+        var prototype = $collectionHolder.data('prototype');
+        // get the new index
+        var index = $collectionHolder.data('index');
+
+        var newForm = prototype;
+
+        newForm = newForm.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        $collectionHolder.data('index', index + 1);
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        var $newFormLi = $('<li class="joueur"></li>').append(newForm);
+        $newLinkLi.before($newFormLi);
+
+        addJoueurFormDeleteLink($newFormLi);
+    } else {
+        $('.addJoueur').bind('click', false);
+    }
+}
+
+function addJoueurFormDeleteLink($tagFormLi) {
+    var $removeFormButton = $('<a class="supprimerJoueur">Supprimer ce joueur</a>');
+    $tagFormLi.append($removeFormButton);
+
+    $removeFormButton.on('click', function(e) {
+        // remove the li for the tag form
+        $tagFormLi.remove();
+    });
+}
+
+</script>
+{% endblock %}

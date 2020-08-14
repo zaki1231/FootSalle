@@ -2,8 +2,8 @@
     margin-top: 3em;
 }
 body{
-    font-family: Helvetica !important;
-    background-color: #2bbbad30 !important;
+    font-family: Montserrat !important;
+    background-color: #2bbbad61!important;
 }
 
 .nav-link{
@@ -38,6 +38,10 @@ nav ul a:hover {
     background-color: black !important;
 }
 
+.btn-mdb-color {
+    background-color:#f44336 !important;
+}
+
 .card-top{
     margin-top: 20px; 
 }
@@ -45,10 +49,10 @@ nav ul a:hover {
     background-color: #e0e0e0 !important;
 }
 
-.panel-inncorect-identifiant{
-    background-color: red;
-    width: 20%;
+.alert-message{
+    color: red !important;
 }
+
 .card-panel-p{
     font-size: larger;
 }
@@ -56,6 +60,7 @@ nav ul a:hover {
 .card-color {
     background-color: #f8f9faeb !important;
 }
+
 label {
     font-size: 1.1em;
     color: #212529;
@@ -64,28 +69,115 @@ h1 {
     margin-bottom: 1.1em !important;
 }
 
-p {
-    font-size: 1.1em;
-    color: black !important;
+p{
+    font-size: 1.2em !important;
+    font-weight: inherit !important;
+    color: rgba(0,0,0,.92) !important;
+    text-align: justify !important;
    
 }
+.p-tournoi{
+    font-size: inherit !important;  
+    margin-top: 25px;
+}
+
+.p-panel-home{ 
+    font-size: inherit !important;  
+    text-align: initial !important;
+}
+
+.panel-home-detail{
+    margin-top: 47px !important;
+}
+
+.card-title-panel{
+    margin-top: 30px !important;
+}
+
+.addJoueur {
+    color: #f44336 !important;
+}
+.supprimerJoueur{
+    color: #f44336 !important;
+}
+
+.p-home{
+    margin-top: 15px;
+}
+
 h4{
-    color: #e86305;
+    color:#f44336;
     margin-bottom: 1em !important;
 }
-.card-title{
-    margin: 50px;
-}
-li{
-    font-size: 1.2em;
-    color: #e86305;
+
+h5{
+    color:#f44336;
 }
 
 .reservation-ul-margin{
     margin-top: 1em;
-}.jumbotron {
+}
+
+.jumbotron {
     background-color: #f8f9faeb !important;
 }
+
+.img-tournoi{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.card{
+    background-color: #f8f9fa00 !important;
+    color: rgba(0,0,0,.92) !important;
+}
+
+.mon_id{
+    border-bottom-style: double;
+    margin-bottom: 3em;
+}
+
+.image-reservation{
+    width: 100%;
+    height: auto;
+    margin-bottom: 2em;
+}
+
+.btn{
+    margin-top: 5% !important;
+    margin: auto !important;
+}
+
+.color-resulat-equipe{
+    color: black !important;
+}
+
+.input-field>label {
+    color: rgba(0,0,0,.92) !important;
+}
+
+.resultat-color{
+    background-color: #2bbbad61!important;
+}
+
+.date-tournoi{
+    color:#f44336 !important;
+}
+
+.btn-joueur{
+    margin-left: 1% !important;
+}
+
+.btn-charger-resultat{
+    margin-bottom: 5% !important;
+}
+
+.margin-resulat-equipe{
+    margin-top: 35px;
+    text-decoration: underline;
+}
+
+
 @media (max-width: 992px){
     .navbar-collapse{
         background-color:#2bbbad;
@@ -94,6 +186,7 @@ li{
     h1 {
         font-size: 2em !important;
     }
+    
 }
 
 

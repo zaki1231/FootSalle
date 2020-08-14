@@ -14,7 +14,6 @@ class Reservation
     
     /**
      * @var int 
-     * 
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -23,6 +22,17 @@ class Reservation
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message = "veuillez saisir un nom valide"
+     * )
+     * * @Assert\Length(
+     *      min = 4,
+     *      max = 15,
+     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom dépasse {{ limit }}"
+     * )
      */
     private $nom;
 
@@ -31,10 +41,15 @@ class Reservation
      * 
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     *      min = 3,
-     *      max = 80,
-     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères",
-     *      maxMessage = "Votre nom dépasse {{ limit }}"
+     *      min = 4,
+     *      max = 15,
+     *      minMessage = "Votre prenom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre prennom dépasse {{ limit }}"
+     * )
+     * * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message="veuillez saisir un prenom valide"
      * )
      */
     private $prenom;
