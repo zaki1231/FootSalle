@@ -1,0 +1,1 @@
+{"base_url":"","routes":{"charger_equipes":{"tokens":[["variable","\/","[^\/]++","rowId",true],["text","\/charger_equipes"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":[],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http","locale":[]}
