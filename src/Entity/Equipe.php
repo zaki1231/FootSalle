@@ -6,6 +6,8 @@ use App\Repository\EquipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EquipeRepository::class)
@@ -21,32 +23,48 @@ class Equipe
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 50,
+     *      minMessage = "Le nom de l'equipe doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom de l'equipe dépasse {{ limit }}"
+     * )
+     * @Groups({"group1"})
      */
     private $nom;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"group1"})
      */
     private $matchGagne;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"group1"})
      */
     private $matchNul;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"group1"})
      */
     private $matchPerdu;
 
     /**
-     * @ORM\OneToMany(targetEntity=Joueur::class, mappedBy="idEquipe")
+     * @ORM\OneToMany(targetEntity=Joueur::class, mappedBy="idEquipe", cascade={"persist"})
      */
     private $joueurs;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Tournoi::class, inversedBy="equipes")
+     */
+    private $tournoi;
 
     public function __construct()
     {
         $this->joueurs = new ArrayCollection();
+        $this->tournoi = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,6 +146,32 @@ class Equipe
             if ($joueur->getIdEquipe() === $this) {
                 $joueur->setIdEquipe(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tournoi[]
+     */
+    public function getTournoi(): Collection
+    {
+        return $this->tournoi;
+    }
+
+    public function addTournoi(tournoi $tournoi): self
+    {
+        if (!$this->tournoi->contains($tournoi)) {
+            $this->tournoi[] = $tournoi;
+        }
+
+        return $this;
+    }
+
+    public function removeTournoi(tournoi $tournoi): self
+    {
+        if ($this->tournoi->contains($tournoi)) {
+            $this->tournoi->removeElement($tournoi);
         }
 
         return $this;

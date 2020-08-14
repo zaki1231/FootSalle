@@ -78,8 +78,42 @@
     "doctrine/sql-formatter": {
         "version": "1.1.0"
     },
+    "easycorp/easyadmin-bundle": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "0a51040a43c6f2172a3a0135cd15daf2043905d7"
+        },
+        "files": [
+            "config/packages/easy_admin.yaml",
+            "config/routes/easy_admin.yaml"
+        ]
+    },
     "egulias/email-validator": {
         "version": "2.1.18"
+    },
+    "friendsofsymfony/jsrouting-bundle": {
+        "version": "2.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.3",
+            "ref": "a9f2e49180f75cdc71ae279a929c4b2e0638de84"
+        },
+        "files": [
+            "config/routes/fos_js_routing.yaml"
+        ]
+    },
+    "jms/metadata": {
+        "version": "2.3.0"
+    },
+    "knplabs/knp-components": {
+        "version": "v2.4.2"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.3.0"
     },
     "monolog/monolog": {
         "version": "2.1.0"
@@ -92,6 +126,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.3"
+    },
+    "pagerfanta/pagerfanta": {
+        "version": "v2.3.0"
     },
     "php": {
         "version": "7.3"
@@ -358,6 +395,9 @@
     "symfony/polyfill-php80": {
         "version": "v1.17.0"
     },
+    "symfony/polyfill-uuid": {
+        "version": "v1.17.1"
+    },
     "symfony/process": {
         "version": "v5.1.2"
     },
@@ -462,6 +502,9 @@
     "symfony/twig-pack": {
         "version": "v1.0.0"
     },
+    "symfony/uid": {
+        "version": "v5.1.2"
+    },
     "symfony/validator": {
         "version": "4.3",
         "recipe": {
@@ -507,8 +550,20 @@
     "twig/twig": {
         "version": "v3.0.3"
     },
+    "vich/uploader-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "c4f5755b37fb65b9c6a3cbdae91205c15a137ed4"
+        }
+    },
     "webmozart/assert": {
         "version": "1.9.0"
+    },
+    "willdurand/jsonp-callback-validator": {
+        "version": "v1.1.0"
     },
     "zendframework/zend-code": {
         "version": "3.4.1"

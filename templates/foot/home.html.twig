@@ -1,4 +1,58 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1 >bienvenu</h1>
-     {% endblock %}
+	<div class="row">
+	<!-- Jumbotron -->
+		<div class="col-md-8">
+			<h4 class="text-center">Football en salle. Qu'est-ce que c'est ?</h4>
+			<img src="images/image-home.jpg" class="img-fluid " alt="smaple image">	
+			<p class="p-home">Le futsal ou football en salle est un sport dérivé du football dans lequel deux équipes de 4 joueurs et un gardien de but s’affrontent sur un terrain intérieur, le plus fréquemment aux dimensions d’un terrain de handball. C’est un sport qui est né en Espagne dans les années 1930. La première coupe du monde de futsal a eu lieu en 1989 et, depuis 1992 a lieu tous les 4 ans. Le Brésil (5 fois champion du monde) et l’Espagne (2 fois championne du monde) sont les 2 seuls pays mondialement titrés..</p>
+		
+		</div>
+		<div class="card col-md-4 panel-home-detail">
+
+			<h4 class="card-title-panel text-center">Les règles du jeu:</h4>
+			  <!-- Text -->
+			
+			<p class="card-text p-panel-home">- Le jeu se joue à <span class="font-weight-bold">2 équipes de 5 joueurs</span>,  dont un gardien qui ne doit pas sortir de sa surface de réparation.</p>
+			<p class="card-text p-panel-home">- <span class="font-weight-bold"> Les balustrades de 1m de haut </span> entourant le terrain font intégralement partie du jeu, ce qui multiplie les possibilités et le temps de jeu effectif.</p>
+			<p class="card-text p-panel-home">- <span class="font-weight-bold"> Le terrain est entouré de filets </span> sur les cotés et au plafond. Dès que le ballon touche le filet, il est considéré comme sorti et on procède à une remise en jeu du gardien.</p>
+			<p class="card-text p-panel-home">- <span class="font-weight-bold"> Le gardien ne peut jamais sortir de sa zone </span> (sauf lorsqu'on joue à 4 contre 4 où le gardien peut dans ce cas être volant) et il ne peut prendre à la main le ballon que si ce dernier a été envoyé par un adversaire. L'infraction à ces deux règles est sanctionnée par un penalty en faveur de l'équipe adverse.</p>
+			<br><h5 class="text-center">Vous souhaitez jouer ?</h5>
+			<br><p class="card-text p-panel-home">N'attendez pas <a href="{{ path('reservation')}}">Réserver</a> votre terrain.
+			
+		  
+		
+		  
+		</div>
+	</div>
+  <!-- Jumbotron -->
+  <hr>
+  <h4 class="text-center margin-resulat-equipe">Résultat des équipes</h4>
+  <p class="text-center">Retrouver en dessous les Résultats de toutes les équipes qui ont participées au tournoi :</p>
+
+  <div class="row">
+	{% for equipe in equipes %}
+	
+			<div class="col-md-4 result">
+				<div class="card-panel resultat-color">
+					<span>
+						<h3 class="mb-4">Résultat de l'équipe:
+							{{ equipe.nom}}</h3>
+						<p class="color-resulat-equipe">match gagné :{{ equipe.matchGagne}}</p>
+						<p class="color-resulat-equipe">match nul :{{ equipe.matchNul  }}</p>
+						<p class="color-resulat-equipe">match perdu :{{ equipe.matchPerdu }}</p>
+
+					</span>
+				</div>
+			</div>	
+	{% endfor %}
+</div>
+
+
+	<a class="load-more btn btn-mdb-color btn-charger-resultat">Charger plus de resultats</a>
+	<input type="hidden" id="row" value="0">
+	<input type="hidden" id="all" value="{{nbEquipes}}">
+	
+
+{% endblock %}
+

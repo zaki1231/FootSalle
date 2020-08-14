@@ -2,16 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\ReservationRepository;
-use DateTime;
+
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ReservationRepository::class)
  */
 class Reservation
 {
+    
     /**
+     * @var int 
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -20,16 +22,43 @@ class Reservation
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message = "veuillez saisir un nom valide"
+     * )
+     * * @Assert\Length(
+     *      min = 4,
+     *      max = 15,
+     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom dépasse {{ limit }}"
+     * )
      */
     private $nom;
 
     /**
+     * @var string
+     * 
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 15,
+     *      minMessage = "Votre prenom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre prennom dépasse {{ limit }}"
+     * )
+     * * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message="veuillez saisir un prenom valide"
+     * )
      */
     private $prenom;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string
+     * 
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[0-9]{10}$/")
      */
     private $numeroTel;
 
@@ -45,7 +74,7 @@ class Reservation
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->id; 
     }
 
     public function getNom(): ?string
@@ -77,7 +106,7 @@ class Reservation
         return $this->numeroTel;
     }
 
-    public function setNumeroTel(int $numeroTel): self
+    public function setNumeroTel(string $numeroTel): self
     {
         $this->numeroTel = $numeroTel;
 

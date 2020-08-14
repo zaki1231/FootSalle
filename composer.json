@@ -5,6 +5,10 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/annotations": "^1.10",
+        "easycorp/easyadmin-bundle": "^3.1",
+        "friendsofsymfony/jsrouting-bundle": "^2.6",
+        "knplabs/knp-paginator-bundle": "^5.3",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "5.1.*",
         "symfony/console": "5.1.*",
@@ -22,13 +26,15 @@
         "symfony/orm-pack": "*",
         "symfony/process": "5.1.*",
         "symfony/security-bundle": "5.1.*",
+        "symfony/serializer": "5.1.*",
         "symfony/serializer-pack": "*",
         "symfony/string": "5.1.*",
         "symfony/translation": "5.1.*",
         "symfony/twig-pack": "*",
-        "symfony/validator": "5.1.*",
+        "symfony/validator": "^5.1",
         "symfony/web-link": "5.1.*",
-        "symfony/yaml": "5.1.*"
+        "symfony/yaml": "5.1.*",
+        "vich/uploader-bundle": "^1.14"
     },
     "require-dev": {
         "symfony/debug-pack": "*",

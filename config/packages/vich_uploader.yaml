@@ -1,0 +1,8 @@
+vich_uploader:
+    db_driver: orm
+    
+    mappings:
+        featured_images:
+            uri_prefix: 'images'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            upload_destination: '%kernel.project_dir%/public/images'

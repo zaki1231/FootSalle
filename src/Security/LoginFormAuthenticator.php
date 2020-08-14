@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
-use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
@@ -75,8 +74,8 @@ class LoginFormAuthenticator extends  AbstractAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        $request->getSession()->getFlashBag()->add('erreur', 'identifiant invalide!');
-          return new  RedirectResponse($this->urlGenerator->generate('reservation'));
+        
+          return new  RedirectResponse($this->urlGenerator->generate('admin'));
     }
 
     /**
@@ -90,9 +89,10 @@ class LoginFormAuthenticator extends  AbstractAuthenticator
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        $request->getSession()->getFlashBag()->add('erreur', 'identifiant invalide!');
+        $request->getSession()->getFlashBag()->add('erreur', 'Identifiant ou Mot de passe incorrect !');
       
         return new  RedirectResponse($this->urlGenerator->generate('app_login'));
+       
        
     }
 

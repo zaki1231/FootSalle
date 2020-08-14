@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+	
+<h4 class="text-center">Identifiez-vous pour pouvoir se connecter</h4>
 	<div class="row">
-		<form class="col s12" method="POST">
+		<form class="col-md-12" method="POST">
 
 			<div class="row">
 				<div class="input-field col s12">
@@ -14,17 +16,24 @@
 			<div class="row">
 				<div class="input-field col s12">
 					<input id="password" type="password" class="validate" name="password">
-					<label for="password">Password</label>
+					<label for="password">Mot de passe</label>
 				</div>
-            </div>
-            <input type="hidden" name="csrf_token" value="{{csrf_token('login_form') }}">
+			</div>
+			<input type="hidden" name="csrf_token" value="{{csrf_token('login_form') }}">
+			{% for type, messages in app.flashes %}
+				{% for message in messages %}
+				
+					<p class="alert-message" class="{{ type }}" role="alert">{{ message }}</p>	
+			
+	
+				{% endfor %}
+			{% endfor %}
+			<button id="submit" type="submit" value=" sign in" class="btn btn-mdb-color">Se connecter</button>
 
-            <button type="submit" value=" sign in" class="btn btn-mdb-color">Se connecter</button>
-
-		</form>
+		</form>			
 	</div>
+	
 
 
-</div>
 {% endblock %}
 {% block javascripts %}{% endblock javascripts %}

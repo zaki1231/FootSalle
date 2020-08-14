@@ -1,58 +1,62 @@
 {% extends 'base.html.twig' %}
-
+{% set action = path('reservation') ~ '#reservation' %}
 {% form_theme formReservation 'bootstrap_4_layout.html.twig'  %}
 {% block body %}
 
-	<div class="container">
+	<h1 class="text-center ">Réservez votre terrain en un seul clic !</h1>
 
-		<h3 class="card-title pt-2 ">
-			<strong>Réservé votre terrain en UN clic !</strong>
-		</h3>
-		<p class="card-title-p">Venez découvrir nos 5 terrains de foot recouverts d'un gazon synthétique de toute dernière génération. ouvert 7j/7 et toute l'année de 10h à minuit. Que vous soyez sportif ou non, débutant ou expert, découvrez une équipe professionnelle attentive à vos attentes et à vos besoins.</p>
-
-	</div>
 	<div class="row">
-		<div class="col s12 m6">
-			<div class="card card-color ">
+		<div class="col-md-6 col-sm-12">
+			<div class="col-md-12 card card-color ">
 				<div class="card-content ">
+					<h4 class="text-center">Bienvenue dans votre centre Z FOOT
+					</h4>
+					<img src="/images/image_reservation.jpg" alt="Card image cap" class="image-reservation">
+					<p>La meilleure expérience de foot salle est désormais à portée de main. Location de terrain,tournoi, événement...<br> Quel que soit votre profil, notre équipe vous accueille toute l'année dans des infrastructures <span  class="font-weight-bold"> haut-de-gamme </span> pour vivre des émotions fortes sur et dehors des terrains !</p>
+					<br><p>Veuillez remplir le formulaire pour éffectuer une réservation, présenter-vous au centre <span  class="font-weight-bold">Z FOOT</span>  10 minutes avant l'heure de votre réservation.</p>
+					
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-6">
+			<div class="col-md-12 card card-color ">
+				<div class="card-content ">
+					<h4 class="text-center ">Réserver un terrain maintenant!</h4>
 					{{ form_start(formReservation) }}
 
 
 					{{form_widget(formReservation) }}
 
 
-					<button type="submit" class="btn btn-mdb-color">Réserver</button>
+					<button id="btn-resv" type="submit" class="btn btn-mdb-color">Réserver</button>
+					
+
+					
 					{{ form_end(formReservation) }}
-
+					
 				</div>
+				
+				{% if reservationPrise %}
+						<div id="reservation">
+							<h5>Réservation validée</h5>
+							<p>
+								Une reservation au nom de
+								{{ reservation.nom }}
+								{{ reservation.prenom }}
+								a été effectuée pour le
+								{{ reservation.dateReservation |date('Y/m/d') }}
+								a
+								{{ reservation.timeReservation |date('H:i') }}.
+								Veuillez vous présenter au centre Z FOOT 15 minutes avant.
+						
+							</p>
+						</div>
+					{% endif %}
 			</div>
-		</div>
+		</div>	
+		
 	</div>
-
-
-	{% if reservationPrise %}
-		<div class="row">
-			<div class="col s12 m6">
-				<div class="card card-color ">
-					<div class="card-content ">
-						<h1>RESERVATION</h1>
-						<p>
-							Une reservation au nom de
-							{{ reservation.nom }}
-							{{ reservation.prenom }}
-							a été effectuée pour le
-							{{ reservation.dateReservation |date('Y/m/d') }}
-							a
-							{{ reservation.timeReservation |date('H:i') }}
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-	{% endif %}
-
-
+	<div id="ancre"></div>
 {% endblock %}
-{% block javascripts %}{% endblock javascripts %}
+

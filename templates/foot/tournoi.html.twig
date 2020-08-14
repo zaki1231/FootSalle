@@ -1,33 +1,84 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-	{% for tournoi in tournois%}
+	
+{% for tournoi in tournois %}
+<h1 class="text-center">Tournois</h1>
+	<div class="row">
+		<div class="col-md-8 card">
+			<!-- Card image -->
+			<img
+			src="{{ vich_uploader_asset(tournoi, 'imageFile') }}" class="img-tournoi" alt="{{ tournoi.imageFile }}" height="350"/>
 
+			<!-- Card content -->
+			<div class="card-body">
 
-		<section class="dark-grey-text">
-		
-			<div class="row pr-lg-5">
-				<div class="col-md-7 mb-4">
+				<!-- Title -->
+				
+				<!-- Text -->
+				<h5 class="date-tournoi text-center">
+					Date du tournoi : {{ tournoi.dateTournoi |date('d-m-Y ') }}
+					à
+					{{ tournoi.dateTournoi |date('h:i') }}
+					<h5/>
 
-					<div class="view">
-						<img src="images/image1.jpg" class="img-fluid" alt="smaple image">
-					</div>
+					<p class="p-tournoi">{{ tournoi.contenu }}</p>
+					<!-- Button -->
 
-				</div>
-				<div class="col-md-5 d-flex align-items-center">
-					<div>
-
-						<h3 class="font-weight-bold mb-4">Prochain tournoi
-							{{ tournoi.nom }}
-							le
-							{{ tournoi.dateTournoi |date('Y/m/d') }}</h3>
-						<p>Z FOOT organise comme chaque année un Tournoi de début de saison dans toutes les gatégories du U15 au séniors sur nos terrains. Ce Tournoi se déroulera le 25 Aout 2020 sur toute la journée avec 16 équipes. Rendez-vous pour toutes les équipes à 8h30 et début des matchs à 9h00. Nous serions très heureux de vous accueillir à l’occasion de cette journée. Droit d’inscription 30 euros par équipe (10 joueurs maxi). Veuillez remplir le formulaire d'inscription si vous souhaiter participer avant le 20 Août, afin que l’on puisse s’organiser pour le bon déroulement de ce tournoi. Le règlement de l'inscription confirmera celle-ci. Restant à votre disposition pour tous renseignements, recevez, madame ou monsieur nos salutations sportives.</p>
-						<a class="nav-link" href="{{ path('equipe') }}">participer</a>
-					</div>
-				</div>
+					<a href="{{ path('equipe', {id: tournoi.id}) }}" id="btn-resv" type="submit" class="btn btn-mdb-color"> Participer</a>
 			</div>
+		</div>
+		<div class="col-md-4">
+			<!-- Card -->
+			<div class="card promoting-card">
 
-		</section>
+				<!-- Card content -->
+				<div class="card-body d-flex flex-row">
+				<div>
+			
+					<!-- Title -->
+					<h4>Details du tournoi</h4>
+					<!-- Subtitle -->
+					<p class="card-text"><i class="far fa-clock pr-2"></i>{{ tournoi.dateTournoi |date('d-m-Y ') }}</p>
+			
+				</div>
+				</div>
+			
+				<!-- Card image -->
+				<div class="view overlay">
+				<img class="card-img-top rounded-0" src="/images/image-ballon-zfoot.png" alt="Card image cap">
+				</div>
+			
+				<!-- Card content -->
+				<div class="card-body">
+			
+				<div class="collapse-content">
+			
+					<!-- Text -->
+					<p class="card-text collapse p-panel-home" id="collapseContent">- Ce Tournoi se déroulera le {{ tournoi.dateTournoi |date('d-m-Y ') }} sur toute la journée avec 10 équipes participantes.</p> 
+					<p class="card-text collapse p-panel-home" id="collapseContent">- Rendez-vous pour toutes les équipes à {{ tournoi.dateTournoi |date('h:i') }} et début des matchs 15 minutes apres.</p>
+					<p class="card-text collapse p-panel-home" id="collapseContent">- Droit d’inscription 30 euros par équipe (10 joueurs maximum).</p>
+					<p class="card-text collapse p-panel-home" id="collapseContent">- Restant à votre disposition pour tout renseignements complémentaire par tel au : 06 99 99 99 99.</p>
+					<!-- Button -->
+				</div>
+				<a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent">Afficher les details</a>
+					
+				
+				</div>
+			
+			</div>
+			<!-- Card -->
+		</div>
+	</div>
+			
+{% endfor %}
+		
+{% for type, messages in app.flashes %}
+	{% for message in messages %}
+
+		<p class="alert-message" class="{{ type }}" role="alert">{{ message }}</p>
+		<p class="card-text">Votre centre Z FOOT met à votre disposition<a href="{{ path('tournoi') }}"> d'autres tournois </a> </p>
 	{% endfor %}
+{% endfor %}
 
 
 {% endblock %}
